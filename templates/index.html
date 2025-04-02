@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing URL Detector</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input { padding: 10px; width: 300px; }
+        button { padding: 10px 20px; }
+        .result { margin-top: 20px; font-size: 20px; font-weight: bold; }
+        .safe { color: green; }
+        .phishing { color: red; }
+    </style>
+</head>
+<body>
+    <h2>Phishing URL Detector</h2>
+    <form action="/predict" method="post">
+        <input type="text" name="url" placeholder="Enter URL" required>
+        <button type="submit">Check</button>
+    </form>
+
+    {% if url %}
+        <div class="result">
+            <p>URL: <strong>{{ url }}</strong></p>
+            <p>Prediction: 
+                {% if prediction == 'Phishing' %}
+                    <span class="phishing">{{ prediction }}</span>
+                {% else %}
+                    <span class="safe">{{ prediction }}</span>
+                {% endif %}
+            </p>
+        </div>
+    {% endif %}
+</body>
+</html>
